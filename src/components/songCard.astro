@@ -1,0 +1,14 @@
+---
+const { title, performer, originalArtist, description, link, image, order } = Astro.props;
+---
+
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-4 mb-4 flex items-start gap-4">
+  <img src={image} alt={title} class="w-24 h-24 object-cover rounded" />
+  <div>
+    <h2 class="text-xl font-bold">{title}</h2>
+    <p><strong>Intérprete:</strong> {performer}</p>
+    <p><strong>Artista Original:</strong> {originalArtist}</p>
+    <p class="my-2">{description}</p>
+    <a href={link} target="_blank" class="text-blue-600 underline">Escuchar canción</a>
+  </div>
+</div>

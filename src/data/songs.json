@@ -1,0 +1,47 @@
+[
+  {
+    "order": 1,
+    "title": "Shape of You",
+    "performer": "Ed Sheeran",
+    "originalArtist": "Ed Sheeran",
+    "description": "Una canción pop pegajosa sobre el amor y la atracción.",
+    "link": "https://open.spotify.com/track/7qiZfU4dY1lWllzX7mPBI3",
+    "image": "/images/interpreters/ed_sheeran.jpg"
+  },
+  {
+    "order": 2,
+    "title": "Someone Like You",
+    "performer": "Adele",
+    "originalArtist": "Adele",
+    "description": "Una balada conmovedora sobre el desamor y seguir adelante.",
+    "link": "https://open.spotify.com/track/4kflIGfjdZJW4ot2ioixTB",
+    "image": "/images/interpreters/adele.jpg"
+  },
+  {
+    "order": 3,
+    "title": "Bohemian Rhapsody",
+    "performer": "Queen",
+    "originalArtist": "Queen",
+    "description": "Una ópera rock clásica con múltiples secciones y estilos.",
+    "link": "https://open.spotify.com/track/7tFiyTwD0nx5a1eklYtX2J",
+    "image": "/images/interpreters/queen.jpg"
+  },
+  {
+    "order": 4,
+    "title": "Hallelujah",
+    "performer": "Jeff Buckley",
+    "originalArtist": "Leonard Cohen",
+    "description": "Una versión bellamente melancólica de la canción de Leonard Cohen.",
+    "link": "https://open.spotify.com/track/5cqI0X25X7Xf2UF3G2OmF8",
+    "image": "/images/interpreters/jeff_buckley.jpg"
+  },
+  {
+    "order": 5,
+    "title": "Imagine",
+    "performer": "John Lennon",
+    "originalArtist": "John Lennon",
+    "description": "Un himno atemporal que promueve la paz y la unidad.",
+    "link": "https://open.spotify.com/track/7pKfPomDEeI4TPT6EOYjn9",
+    "image": "/images/interpreters/john_lennon.jpg"
+  }
+]

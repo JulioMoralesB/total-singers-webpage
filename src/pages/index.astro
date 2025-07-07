@@ -1,0 +1,33 @@
+---
+import './src/styles/global.css';
+---
+
+<html lang="en" class="bg-gradient-to-r from-purple-600 via-indigo-700 to-blue-800 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Song Card Demo</title>
+  </head>
+  <body class="min-h-screen flex flex-col items-center justify-center px-6 py-12 text-gray-100">
+    <h1 class="text-4xl font-extrabold mb-12 drop-shadow-lg text-center">
+      Escoge el tipo de tarjeta que quieres ver
+    </h1>
+    <nav class="flex flex-col space-y-6 w-full max-w-xs">
+      <a
+        href="/static"
+        class="block text-center px-6 py-4 rounded-lg bg-white bg-opacity-80 backdrop-blur-sm shadow-lg hover:bg-opacity-100 transition font-semibold text-lg text-gray-900"
+      >
+        Tarjeta Estática
+      </a>
+      <a
+        href="/flip"
+        class="block text-center px-6 py-4 rounded-lg bg-white bg-opacity-80 backdrop-blur-sm shadow-lg hover:bg-opacity-100 transition font-semibold text-lg text-gray-900"
+      >
+        Tarjeta Interactiva
+      </a>
+    </nav>
+    <footer class="mt-16 text-sm text-gray-300 opacity-70">
+      &copy; 2025 Julio Morales
+    </footer>
+  </body>
+</html>
