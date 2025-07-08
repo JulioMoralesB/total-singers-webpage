@@ -22,10 +22,12 @@ import '../styles/global.css';
 		</svg>
       </button>
       <h1 class="text-3xl font-bold mb-6">Itinerario</h1>
-
-      {songs.map(song => (
-        <SongCard {...song} />
-      ))}
+      <div
+        class="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-6">
+        {songs.map(song => (
+          <SongCard {...song} />
+        ))}
+      </div>
     </main>
 	<script>
 		if (localStorage.getItem('theme') !== 'light') {
