@@ -1,14 +1,76 @@
 ---
-const { title, performer, originalArtist, description, link, image, order } = Astro.props;
+type Social = { name: string; url: string; icon: string };
+type interpreters = {
+  name: string;
+  image: string;
+  socials: Social[];
+};
+
+const {
+  songName,
+  interpreters,
+  albumImage,
+  originalArtistName,
+  composers,
+  description,
+  songLink,
+} = Astro.props as {
+  songName: string;
+  interpreters: interpreters[];
+  albumImage: string;
+  originalArtistName: string;
+  composers: string;
+  description: string;
+  songLink?: string;
+};
 ---
 
-<div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-4 mb-4 flex items-start gap-4">
-  <img src={image} alt={title} class="w-24 h-24 object-cover rounded" />
-  <div>
-    <h2 class="text-xl font-bold">{title}</h2>
-    <p><strong>Intérprete:</strong> {performer}</p>
-    <p><strong>Artista Original:</strong> {originalArtist}</p>
-    <p class="my-2">{description}</p>
-    <a href={link} target="_blank" class="text-blue-600 underline">Escuchar canción</a>
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-8 m-4 mb-8 transition-transform duration-300 hover:shadow-lg hover:scale-101 flex justify-items-center align-middle gap-6">
+  <!-- Interpreter Info (left)-->
+  <div
+    class="flex flex-col items-center text-center justify-center"
+  >
+    {interpreters?.map(({ name: interpreterName, image: interpreterImage, socials: interpreterSocials }) => (
+      <div class="mb-6">
+        <img
+          src={interpreterImage}
+          alt={interpreterName}
+          class="w-56 h-56 object-cover rounded-full mb-4 shadow-lg hover:scale-105 transition-transform duration-300"
+        />
+        <p class="text-4xl"><strong>{interpreterName}</strong></p>
+        <div class="flex flex-wrap justify-center space-x-4 mt-4 mb-2">
+          {interpreterSocials?.map(({ name, url, icon }) => (
+            <a href={url} target="_blank" rel="noopener noreferrer" aria-label={name}>
+              <img src={icon} alt={name} class="w-60 sm:w-16 md:w-10 h-60 sm:h-16 md:h-10 hover:scale-110 transition" />
+            </a>
+          ))}
+        </div>
+    </div>))}
+    
+  </div>
+  <!-- Song Info Text (right)  -->
+    <div class="flex-1 flex flex-col justify-center-safe text-center">
+      <h2 class="text-6xl font-bold mb-6">{songName}</h2>
+      <img
+        src={albumImage}
+        alt={`Portada del álbum de ${songName}`}
+        class="w-48 h-48 object-cover rounded-md mx-auto my-8"
+      />
+      <p class="text-3xl my-4">{originalArtistName}</p>
+      <p class="text-2xl italic text-gray-600 dark:text-gray-400 px-5">Compositores: {composers}</p>
+      <p class="text-2xl my-2">{description}</p>
+      {songLink && (
+      <a
+        href={songLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+      >
+        Escuchar canción
+      </a>
+    )}
+    </div>
+    
+    
   </div>
 </div>
