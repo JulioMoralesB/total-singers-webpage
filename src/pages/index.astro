@@ -1,5 +1,6 @@
 ---
-import songs from '../data/songs.json';
+const response = await fetch('https://assets.totalsingers.com/data/2025/09/songs.json');
+const songs = await response.json();
 import SongCard from '../components/songCard.astro';
 import '../styles/global.css';
 ---
@@ -25,7 +26,7 @@ import '../styles/global.css';
       <h1 class="text-3xl font-bold mb-6">Itinerario</h1>
       <div
         class="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-6">
-        {songs.map(song => (
+        {songs.map((song: any) => (
           <SongCard {...song} />
         ))}
       </div>
