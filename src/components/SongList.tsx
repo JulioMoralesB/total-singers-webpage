@@ -1,6 +1,6 @@
 // src/components/SongList.tsx
 import { useEffect, useState } from "react";
-import SongCard from "./songCard.astro"; // Importas el componente Astro
+import SongCard from "./SongCard"; // Importas el componente Astro
 import type { FunctionalComponent } from "preact";
 
 type Social = { name: string; url: string; icon: string };
@@ -24,7 +24,7 @@ const SongList: FunctionalComponent = () => {
   const [songs, setSongs] = useState<Song[]>([]);
 
   useEffect(() => {
-    fetch("https://assets.totalsingers.com/songs.json")
+    fetch("https://assets.totalsingers.com/data/2025/09/songs.json")
       .then((res) => res.json())
       .then((data) => setSongs(data))
       .catch((err) => console.error("Error fetching songs:", err));
@@ -32,7 +32,7 @@ const SongList: FunctionalComponent = () => {
 
   return (
     <>
-      {songs.map((song, idx) => (
+      {songs.map((song: any, idx: any) => (
         <SongCard key={idx} {...song} />
       ))}
     </>
