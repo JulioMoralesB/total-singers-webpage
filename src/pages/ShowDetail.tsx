@@ -29,7 +29,7 @@ export const ShowDetail: React.FC = () => {
   return (
     <div className="bg-surface min-h-screen">
       {/* Hero */}
-      <section className="relative pt-40 pb-20 overflow-hidden">
+      <section className="relative pt-40 pb-0 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent z-10" />
           <img
@@ -41,7 +41,7 @@ export const ShowDetail: React.FC = () => {
         <div className="relative z-20 max-w-4xl mx-auto px-6 md:px-8">
           <Link
             to="/shows"
-            className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors mb-8 label-uppercase"
+            className="flex w-fit items-center gap-2 text-on-surface-variant hover:text-primary transition-colors mb-8 label-uppercase"
           >
             <span className="material-symbols-outlined text-sm" aria-hidden="true">arrow_back</span>
             Todos los Recitales
@@ -68,7 +68,7 @@ export const ShowDetail: React.FC = () => {
       </section>
 
       {/* Detail Content */}
-      <section className="py-20">
+      <section className="py-15">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="space-y-8">
             <div className="glass-card p-8">
