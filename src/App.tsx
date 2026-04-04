@@ -21,20 +21,22 @@ export const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <Navigation />
-      <main className="pt-20">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shows" element={<Shows />} />
-          <Route path="/shows/:id" element={<ShowDetail />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/team/:id" element={<SingerDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-        </Routes>
-      </main>
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Navigation />
+        <main className="pt-20 flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shows" element={<Shows />} />
+            <Route path="/shows/:id" element={<ShowDetail />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/team/:id" element={<SingerDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   )
 }

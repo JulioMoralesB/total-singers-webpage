@@ -22,7 +22,7 @@ export const Shows: React.FC = () => {
   return (
     <div className="bg-surface">
       {/* Hero Header */}
-      <section className="py-32 overflow-hidden pt-40">
+      <section className="py-10 overflow-hidden pt-10">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex flex-col gap-6 max-w-3xl">
             <Badge color="tertiary">Próximamente</Badge>
@@ -38,7 +38,7 @@ export const Shows: React.FC = () => {
       </section>
 
       {/* Concert Grid */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {showsData.map((show) => (

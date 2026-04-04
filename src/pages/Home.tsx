@@ -20,7 +20,7 @@ export const Home: React.FC = () => {
   return (
     <div className="bg-surface overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative pt-28 pb-20 md:pt-18 md:pb-14">
+      <section className="relative pt-18 pb-18 md:pt-18 md:pb-14">
         <div className="absolute inset-0 z-0" aria-hidden="true">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 blur-[150px] rounded-full translate-x-1/3 -translate-y-1/4" />
           <div className="absolute bottom-0 right-1/3 w-[300px] h-[300px] bg-secondary/15 blur-[100px] rounded-full" />
