@@ -1,0 +1,28 @@
+export interface Show {
+  id: string;
+  title: string;
+  date: string;
+  location: string;
+  venue: string;
+  image: string;
+  link?: string;
+}
+
+export interface Track {
+  id: string;
+  number: number;
+  title: string;
+  artist: string;
+  duration: string;
+  soloists?: string[];
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  image: string;
+  instrument?: string;
+  bio?: string | null;
+  color?: 'primary' | 'secondary' | 'tertiary';
+}
