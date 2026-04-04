@@ -6,14 +6,8 @@ interface SingerCardProps {
   name: string
   role: string
   image: string
-  color?: 'primary' | 'secondary' | 'tertiary'
+  color?: string
   className?: string
-}
-
-const hoverColorMap = {
-  primary: 'bg-primary/20',
-  secondary: 'bg-secondary/20',
-  tertiary: 'bg-tertiary/20',
 }
 
 export const SingerCard: React.FC<SingerCardProps> = ({
@@ -21,7 +15,7 @@ export const SingerCard: React.FC<SingerCardProps> = ({
   name,
   role,
   image,
-  color = 'primary',
+  color = '#ba9eff',
   className = '',
 }) => {
   const imageBlock = (
@@ -32,7 +26,8 @@ export const SingerCard: React.FC<SingerCardProps> = ({
         src={image}
       />
       <div
-        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity ${hoverColorMap[color]}`}
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+        style={{ backgroundColor: color + '33' }}
         aria-hidden="true"
       />
     </div>

@@ -32,6 +32,6 @@ export interface TeamMember {
   image: string;
   instrument?: string;
   bio?: string | null;
-  color?: 'primary' | 'secondary' | 'tertiary';
+  color?: string;
   socialLinks?: SocialLinks;
 }
