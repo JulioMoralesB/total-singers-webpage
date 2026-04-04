@@ -29,7 +29,7 @@ export const TEAM_MEMBERS_QUERY = /* groq */ `
     "image": image.asset->url,
     instrument,
     bio,
-    "color": color.hex,
+    "color": color,
     socialLinks
   }
 `
@@ -47,9 +47,14 @@ export const SHOWS_QUERY = /* groq */ `
     "id": _id,
     "slug": slug.current,
     title,
+    description,
     date,
+    eventTime,
+    doorsOpenTime,
+    estimatedDurationMinutes,
     venue,
     location,
+    locationUrl,
     "image": image.asset->url,
     setlist[] {
       "id": _key,
@@ -57,7 +62,10 @@ export const SHOWS_QUERY = /* groq */ `
       title,
       artist,
       duration,
-      soloists
+      "soloists": soloistRefs[]->{
+        name,
+        "slug": slug.current
+      }
     }
   }
 `

@@ -40,6 +40,53 @@ export const showType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'locationUrl',
+      title: 'Link de Ubicación',
+      description: 'Opcional. URL de Google Maps u otro enlace para llegar al lugar.',
+      type: 'url',
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ['http', 'https'],
+        }),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Descripción del Evento',
+      description: 'Texto que se muestra en la sección "Sobre el Evento".',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
+      name: 'eventTime',
+      title: 'Hora del Evento',
+      description: 'Formato 24h HH:mm (ej. 20:00).',
+      type: 'string',
+      validation: (Rule) =>
+        Rule.regex(/^([01]\d|2[0-3]):([0-5]\d)$/, {
+          name: 'time',
+          invert: false,
+        }).error('Usa formato HH:mm, por ejemplo 20:00'),
+    }),
+    defineField({
+      name: 'doorsOpenTime',
+      title: 'Hora de Apertura de Puertas',
+      description: 'Opcional. Formato 24h HH:mm (ej. 19:00).',
+      type: 'string',
+      validation: (Rule) =>
+        Rule.regex(/^([01]\d|2[0-3]):([0-5]\d)$/, {
+          name: 'time',
+          invert: false,
+        }).error('Usa formato HH:mm, por ejemplo 19:00'),
+    }),
+    defineField({
+      name: 'estimatedDurationMinutes',
+      title: 'Duración Estimada (minutos)',
+      description:
+        'Opcional. Si se deja vacío, se calcula automáticamente desde el setlist (+1 minuto extra por canción).',
+      type: 'number',
+      validation: (Rule) => Rule.integer().positive(),
+    }),
+    defineField({
       name: 'image',
       title: 'Imagen del Evento',
       type: 'image',
@@ -82,10 +129,18 @@ export const showType = defineType({
               validation: (Rule) => Rule.required(),
             }),
             defineField({
-              name: 'soloists',
-              title: 'Solistas',
+              name: 'soloistRefs',
+              title: 'Solistas (Equipo)',
+              description: 'Selecciona miembros existentes del equipo.',
               type: 'array',
-              of: [defineArrayMember({type: 'string'})],
+              of: [
+                defineArrayMember({
+                  type: 'reference',
+                  to: [{type: 'teamMember'}],
+                  options: {disableNew: true},
+                }),
+              ],
+              validation: (Rule) => Rule.unique(),
             }),
           ],
           preview: {

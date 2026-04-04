@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { teamData } from '../data'
+import { useTeamMembers } from '../hooks/useTeamMembers'
 import { Badge } from '../components/Badge'
 import { Button } from '../components/Button'
 
@@ -12,8 +12,17 @@ const socialMeta: Record<string, { icon: string; label: string; baseUrl: string 
 }
 
 export const SingerDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const member = teamData.find(m => m.id === id)
+  const { slug } = useParams<{ slug: string }>()
+  const { data: members, loading } = useTeamMembers()
+  const member = members.find(m => m.slug === slug)
+
+  if (loading) {
+    return (
+      <div className="bg-surface min-h-screen flex items-center justify-center">
+        <p className="text-on-surface-variant">Cargando…</p>
+      </div>
+    )
+  }
 
   if (!member) {
     return (
@@ -66,6 +75,13 @@ export const SingerDetail: React.FC = () => {
               <h1 className="font-headline text-5xl md:text-6xl font-black text-on-surface leading-tight">
                 {member.name}
               </h1>
+
+              {member.instrument && (
+                <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/30">
+                  <span className="material-symbols-outlined text-sm text-secondary" aria-hidden="true">piano</span>
+                  <span className="text-sm font-medium text-on-surface">{member.instrument}</span>
+                </div>
+              )}
 
               {member.bio && (
                 <p className="text-on-surface-variant text-lg leading-relaxed font-body">

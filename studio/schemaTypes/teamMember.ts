@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {ColorSwatchInput} from '../components/ColorSwatchInput'
 
 export const teamMemberType = defineType({
   name: 'teamMember',
@@ -45,10 +46,9 @@ export const teamMemberType = defineType({
     defineField({
       name: 'color',
       title: 'Color Temático',
-      type: 'color',
-      options: {
-        disableAlpha: true,
-      },
+      type: 'string',
+      components: {input: ColorSwatchInput},
+      initialValue: '#ba9eff',
     }),
     defineField({
       name: 'socialLinks',

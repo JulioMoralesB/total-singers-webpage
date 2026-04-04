@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 interface SingerCardProps {
-  id?: string
+  slug?: string
   name: string
   role: string
   image: string
@@ -11,7 +11,7 @@ interface SingerCardProps {
 }
 
 export const SingerCard: React.FC<SingerCardProps> = ({
-  id,
+  slug,
   name,
   role,
   image,
@@ -35,8 +35,8 @@ export const SingerCard: React.FC<SingerCardProps> = ({
 
   return (
     <div className={`group ${className}`}>
-      {id ? (
-        <Link to={`/team/${id}`} className="block cursor-pointer">
+      {slug ? (
+        <Link to={`/team/${slug}`} className="block cursor-pointer">
           {imageBlock}
         </Link>
       ) : (

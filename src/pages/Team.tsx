@@ -1,9 +1,10 @@
 import React from 'react'
 import { Badge } from '../components/Badge'
-import { teamData } from '../data'
+import { useTeamMembers } from '../hooks/useTeamMembers'
 import { SingerCard } from '../components/SingerCard'
 
 export const Team: React.FC = () => {
+  const { data: members, loading } = useTeamMembers()
   return (
     <div className="bg-surface">
       {/* Hero Header */}
@@ -28,14 +29,16 @@ export const Team: React.FC = () => {
       <section className="pb-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {teamData.map((member, index) => (
+            {loading ? (
+              <p className="col-span-4 text-on-surface-variant text-center py-12">Cargando…</p>
+            ) : members.map((member, index) => (
               <SingerCard
                 key={member.id}
-                id={member.id}
+                slug={member.slug}
                 name={member.name}
                 role={member.role}
                 image={member.image}
-                color={member.color ?? 'primary'}
+                color={member.color ?? '#ba9eff'}
                 className={index % 2 === 1 ? 'md:mt-12' : ''}
               />
             ))}

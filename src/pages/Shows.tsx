@@ -1,6 +1,6 @@
 import React from 'react'
 import { Badge } from '../components/Badge'
-import { showsData } from '../data'
+import { useShows } from '../hooks/useShows'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
 
@@ -18,7 +18,16 @@ const formatDateFull = (dateStr: string) => {
   })
 }
 
+const formatTime12h = (time24: string) => {
+  const [hourStr, minuteStr] = time24.split(':')
+  const hour = Number(hourStr)
+  const period = hour >= 12 ? 'PM' : 'AM'
+  const hour12 = ((hour + 11) % 12) + 1
+  return `${hour12}:${minuteStr} ${period}`
+}
+
 export const Shows: React.FC = () => {
+  const { data: shows, loading } = useShows()
   return (
     <div className="bg-surface">
       {/* Hero Header */}
@@ -41,7 +50,9 @@ export const Shows: React.FC = () => {
       <section className="py-10">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {showsData.map((show) => (
+            {loading ? (
+              <p className="col-span-3 text-on-surface-variant text-center py-12">Cargando…</p>
+            ) : shows.map((show) => (
               <div key={show.id} className="relative group overflow-hidden rounded-lg aspect-[3/4]">
                 {/* Background Image */}
                 <img
@@ -61,10 +72,14 @@ export const Shows: React.FC = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-6 glass-card m-4 group-hover:-translate-y-2 transition-transform duration-300">
                   <h3 className="font-headline text-xl font-bold text-on-surface mb-2">{show.title}</h3>
                   <div className="flex items-center gap-2 text-on-surface-variant text-sm">
-                    <span className="material-symbols-outlined text-lg" aria-hidden="true">location_on</span>
+                    <span className="material-symbols-outlined text-lg" aria-hidden="true">stadium</span>
                     <span>{show.venue}</span>
                   </div>
                   <p className="text-on-surface-variant text-sm mt-1">{formatDateFull(show.date)}</p>
+                  <p className="text-on-surface-variant text-sm mt-1 inline-flex items-center gap-1">
+                    <span className="material-symbols-outlined text-base" aria-hidden="true">schedule</span>
+                    {formatTime12h(show.eventTime ?? '20:00')}
+                  </p>
                   <Link to={`/shows/${show.slug}`} className="block mt-4">
                     <Button variant="primary" size="sm" className="w-full">Ver Detalles</Button>
                   </Link>
