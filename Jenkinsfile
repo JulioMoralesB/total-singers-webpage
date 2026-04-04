@@ -39,10 +39,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh """
-                    # Instalar serve si no está disponible
                     npm list -g serve || npm install -g serve
+                    npm list -g pm2   || npm install -g pm2
 
-                    # Reiniciar o crear el proceso PM2
                     pm2 delete total-singers || true
                     pm2 serve dist ${params.PORT} --name total-singers --spa
                     pm2 save
