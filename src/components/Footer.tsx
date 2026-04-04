@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="w-full rounded-t-lg mt-20 bg-slate-900">
+    <footer className="w-full rounded-t-lg mt-20 bg-surface-container-low border-t border-outline-variant/10">
       <div className="flex flex-col md:flex-row justify-between items-center px-6 md:px-8 py-10 w-full max-w-7xl mx-auto">
         {/* Logo */}
         <div className="text-xl font-bold text-primary font-headline mb-6 md:mb-0">
@@ -19,24 +20,24 @@ export const Footer: React.FC = () => {
           >
             Contacto
           </a>
-          <a
-            href="#"
+          <Link
+            to="/about"
             className="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
           >
             Acerca de
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/privacy"
             className="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
           >
             Privacidad
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/terms"
             className="font-body text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
           >
             Términos
-          </a>
+          </Link>
         </div>
 
         {/* Copyright */}

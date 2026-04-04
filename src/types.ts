@@ -5,7 +5,7 @@ export interface Show {
   location: string;
   venue: string;
   image: string;
-  link?: string;
+  setlist?: Track[];
 }
 
 export interface Track {

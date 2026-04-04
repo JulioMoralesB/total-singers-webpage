@@ -1,5 +1,6 @@
-// Sample shows data
-export const showsData = [
+import type { Show, TeamMember } from '../types'
+
+export const showsData: Show[] = [
   {
     id: '1',
     title: 'Armonías Neon - Concierto Especial',
@@ -7,6 +8,40 @@ export const showsData = [
     location: 'Auditorio Principal',
     venue: 'Centro Cultural',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDXzMOrp8_BtnK9klgCz97_7DJWw421kz-U6cXKv1gcSNfS_KkO8HKP33ezkIzpuJCOQUwQeKozZ34if3A-jVqrk3jwt73Y4XJTS9w2xxwIRHocEeq4lwNmGpA0EdZHXPsO7abXlogu--pU3eSbedARblBssBDpWWP0gb-nJYIedoqImCHOW_bf-LIIGvbw96wFykaDFiOpOPtEOUPjLZdjZRxLNiZZ0xHhYgOWbWCApMoDOTOweVcRnEHSsNUH0ddK5N01vyhZNPw',
+    setlist: [
+      {
+        id: '1',
+        number: 1,
+        title: 'Levitating (Remix de Total Singers)',
+        artist: 'Dua Lipa',
+        duration: '4:12',
+        soloists: ['Maya', 'Diego'],
+      },
+      {
+        id: '2',
+        number: 2,
+        title: 'Blinding Lights',
+        artist: 'The Weeknd',
+        duration: '3:20',
+        soloists: ['Sofía'],
+      },
+      {
+        id: '3',
+        number: 3,
+        title: 'Anti-Hero',
+        artist: 'Taylor Swift',
+        duration: '3:21',
+        soloists: ['Mariana', 'Laura'],
+      },
+      {
+        id: '4',
+        number: 4,
+        title: 'Flowers',
+        artist: 'Miley Cyrus',
+        duration: '3:20',
+        soloists: ['Andrea'],
+      },
+    ],
   },
   {
     id: '2',
@@ -26,44 +61,8 @@ export const showsData = [
   },
 ];
 
-// Sample setlist data
-export const setlistData = [
-  {
-    id: '1',
-    number: 1,
-    title: 'Levitating (Remix de Total Singers)',
-    artist: 'Dua Lipa',
-    duration: '4:12',
-    soloists: ['Maya', 'Diego'],
-  },
-  {
-    id: '2',
-    number: 2,
-    title: 'Blinding Lights',
-    artist: 'The Weeknd',
-    duration: '3:20',
-    soloists: ['Sofía'],
-  },
-  {
-    id: '3',
-    number: 3,
-    title: 'Anti-Hero',
-    artist: 'Taylor Swift',
-    duration: '3:21',
-    soloists: ['Mariana', 'Laura'],
-  },
-  {
-    id: '4',
-    number: 4,
-    title: 'Flowers',
-    artist: 'Miley Cyrus',
-    duration: '3:20',
-    soloists: ['Andrea'],
-  },
-];
-
 // Sample team data
-export const teamData = [
+export const teamData: TeamMember[] = [
   {
     id: '1',
     name: 'Maya García',

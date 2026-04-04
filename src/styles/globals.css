@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config '../../tailwind.config.ts';
 
 @layer base {
   :root {
@@ -29,6 +30,37 @@
     transition-property: color;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+  }
+}
+
+@layer components {
+  /* Glass Card - glassmorphism floating container */
+  .glass-card {
+    @apply bg-surface-variant/40 backdrop-blur-lg border border-outline-variant/20 rounded-lg;
+  }
+
+  /* Gradient Primary button background */
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary-dim to-primary;
+  }
+
+  /* Hero display title */
+  .title-hero {
+    @apply font-black tracking-tighter leading-[0.9];
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-family: 'Epilogue', sans-serif;
+  }
+
+  /* Section heading */
+  .heading-secondary {
+    @apply text-3xl md:text-4xl font-bold tracking-tighter;
+    font-family: 'Epilogue', sans-serif;
+  }
+
+  /* Small uppercase metadata label */
+  .label-uppercase {
+    @apply text-xs uppercase tracking-widest font-bold;
+    font-family: 'Manrope', sans-serif;
   }
 }
 

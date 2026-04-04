@@ -8,6 +8,7 @@ export default {
         // Modern Harmony Design System - Core Colors
         surface: '#0d0d15',
         'surface-dim': '#0d0d15',
+        'surface-container-lowest': '#000000',
         'surface-container-low': '#13131b',
         'surface-container': '#191922',
         'surface-container-high': '#1f1f29',
@@ -130,80 +131,4 @@ export default {
       },
     },
   },
-
-  plugins: [
-    function ({ addComponents, theme }) {
-      addComponents({
-        // Glass Card Component
-        '.glass-card': {
-          '@apply bg-surface-variant/40 backdrop-blur-lg border border-outline-variant/20 rounded-lg': {},
-        },
-
-        // Gradient Primary
-        '.gradient-primary': {
-          '@apply bg-gradient-to-br from-primary-dim to-primary': {},
-        },
-
-        // Button Primary
-        '.btn-primary': {
-          '@apply px-6 py-3 rounded-full font-headline font-bold text-on-primary-fixed gradient-primary hover:scale-105 active:scale-95 transition-all duration-200': {},
-        },
-
-        // Button Secondary
-        '.btn-secondary': {
-          '@apply px-6 py-3 rounded-full font-headline font-bold text-on-surface bg-surface-container-highest border border-outline-variant/20 hover:border-primary/50 hover:scale-105 active:scale-95 transition-all duration-200': {},
-        },
-
-        // Badge
-        '.badge': {
-          '@apply inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider': {},
-        },
-
-        // Badge Primary
-        '.badge-primary': {
-          '@apply badge bg-primary/10 text-primary border border-primary/20': {},
-        },
-
-        // Badge Secondary
-        '.badge-secondary': {
-          '@apply badge bg-secondary text-surface font-bold': {},
-        },
-
-        // Badge Tertiary
-        '.badge-tertiary': {
-          '@apply badge bg-tertiary text-surface font-bold': {},
-        },
-
-        // Container styles
-        '.container-editorial': {
-          '@apply max-w-7xl mx-auto px-6 md:px-8': {},
-        },
-
-        // Section Base
-        '.section-base': {
-          '@apply py-20 md:py-32': {},
-        },
-
-        // Section with Background
-        '.section-bg': {
-          '@apply section-base bg-surface-container-low': {},
-        },
-
-        // Hero Title
-        '.title-hero': {
-          '@apply font-headline text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9]': {},
-        },
-
-        // Heading Secondary
-        '.heading-secondary': {
-          '@apply font-headline text-3xl md:text-4xl font-bold tracking-tighter': {},
-        },
-
-        // Label uppercase
-        '.label-uppercase': {
-          '@apply font-label text-xs uppercase tracking-widest font-bold': {},
-        },
-      })
-    },
-  ],
 } satisfies Config
