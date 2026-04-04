@@ -9,6 +9,7 @@
     "lint": "tsc"
   },
   "dependencies": {
+    "@sanity/client": "^7.20.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^6.20.0"
