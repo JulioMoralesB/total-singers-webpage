@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS Version 24.4.1'
-    }
-
     parameters {
         string(
             name: 'PORT',
@@ -39,9 +35,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh """
-                    npm list -g serve || npm install -g serve
-                    npm list -g pm2   || npm install -g pm2
-
                     pm2 delete total-singers || true
                     pm2 serve dist ${params.PORT} --name total-singers --spa
                     pm2 save
