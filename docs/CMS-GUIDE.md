@@ -1,10 +1,15 @@
 # Guia CMS - Total Singers
 
-Esta guia explica como gestionar contenido del sitio desde Sanity Studio sin tocar codigo.
+Esta guia explica como administrar el contenido del sitio desde Sanity Studio.
+Esta pensada para editores y colaboradores que no necesitan tocar codigo.
 
 ## 1) Acceso al CMS
 
-1. Abre el studio desplegado de Sanity (URL de tu proyecto) o correlo localmente:
+### Opcion recomendada (produccion)
+
+- https://total-singers.sanity.studio/
+
+### Opcion local (desarrollo)
 
 ```bash
 cd studio
@@ -12,17 +17,21 @@ npm install
 npm run dev
 ```
 
-2. Inicia sesion con tu cuenta autorizada de Sanity.
-3. Selecciona el dataset `production`.
+Luego:
+
+Inicia sesion con tu cuenta autorizada de Sanity.
+![Acceso al Studio](images/cms-login.png)
+
+
 
 ## 2) Modelos de contenido
 
-## Team Member (Miembro del Equipo)
+### Team Member (Miembro del Equipo)
 
 Campos principales:
 
 - `name` (string, obligatorio)
-- `slug` (slug, obligatorio, autogenerado desde nombre)
+- `slug` (slug, obligatorio, autogenerado desde `name`)
 - `role` (string, obligatorio)
 - `image` (image, obligatorio)
 - `instrument` (string, opcional)
@@ -35,15 +44,15 @@ Campos principales:
 
 Notas:
 
-- El color usa presets visuales + opcion hex personalizada.
-- El frontend enlaza perfiles con `slug` (`/team/:slug`).
+- El color usa presets visuales y opcion hex personalizada.
+- El frontend usa `slug` para el perfil (`/team/:slug`).
 
-## Show (Evento / Recital)
+### Show (Evento / Recital)
 
 Campos principales:
 
 - `title` (string, obligatorio)
-- `slug` (slug, obligatorio, autogenerado desde titulo)
+- `slug` (slug, obligatorio, autogenerado desde `title`)
 - `date` (date, obligatorio)
 - `eventTime` (string `HH:mm`, opcional)
 - `doorsOpenTime` (string `HH:mm`, opcional)
@@ -65,35 +74,44 @@ Campos por cancion (`setlist[]`):
 
 Notas:
 
-- `soloistRefs` permite elegir miembros reales del equipo.
-- En frontend, los solistas se muestran como links a su perfil cuando tienen `slug`.
+- `soloistRefs` conecta canciones con miembros reales del equipo.
+- En el frontend, cada solista se muestra como link a su perfil cuando existe `slug`.
 
 ## 3) Flujo editorial (sin codigo)
 
-## Crear o editar miembro
+### Crear o editar miembro
 
 1. Abre `Miembro del Equipo`.
-2. Crea o edita registro.
+2. Crea o edita el registro.
 3. Sube foto en `image`.
 4. Completa `name`, `role`, `instrument`, `bio`, color y redes.
 5. Publica.
 
-## Crear o editar evento
+![Formulario Miembro del Equipo](images/cms-team-member-form.png)
+
+### Crear o editar evento
 
 1. Abre `Evento / Recital`.
-2. Crea o edita registro.
+2. Crea o edita el registro.
 3. Completa datos generales (`title`, `date`, `venue`, `location`, horas).
-4. Agrega descripcion en markdown en `description`.
+4. Escribe la descripcion en markdown en `description`.
 5. Sube imagen en `image`.
+![Formulario principal de Evento](images/cms-show-form.png)
+
 6. En `setlist`, agrega canciones y selecciona solistas en `soloistRefs`.
+
+![Setlist con solistas referenciados](images/cms-show-setlist.png)
+
 7. Publica.
 
-## Eliminar contenido
+![Publicacion del contenido](images/cms-publish-button.png)
+
+### Eliminar contenido
 
 - Abre el documento y usa `Delete`.
-- Confirmar que no se use en links activos antes de borrar.
+- Verifica antes que ese contenido no este enlazado desde paginas activas.
 
-## 4) Como afecta al frontend
+## 4) Relacion CMS -> Frontend
 
 Mapeo principal:
 
@@ -105,18 +123,18 @@ Mapeo principal:
   - Lista: `src/pages/Shows.tsx`
   - Detalle: `src/pages/ShowDetail.tsx`
 
-Cliente y queries:
+Cliente y hooks:
 
 - Cliente Sanity: `src/lib/sanity.ts`
 - Hook miembros: `src/hooks/useTeamMembers.ts`
 - Hook eventos: `src/hooks/useShows.ts`
 
-Comportamientos importantes:
+Comportamientos clave:
 
-- Horas en UI se muestran en formato AM/PM.
+- Las horas se muestran en formato AM/PM.
 - Duracion del programa:
-  - Si `estimatedDurationMinutes` existe, usa ese valor.
-  - Si no existe, se calcula desde setlist sumando 1 minuto extra por cancion.
+  - Si `estimatedDurationMinutes` existe, se usa ese valor.
+  - Si no existe, se calcula desde `setlist` sumando 1 minuto extra por cancion.
 
 ## 5) API y variables de entorno
 
@@ -132,13 +150,15 @@ Archivos:
 
 CORS en Sanity (produccion):
 
-- Agregar dominios reales del sitio (ej. `https://www.totalsingers.com` y `https://totalsingers.com`).
+- Agregar dominios reales del sitio, por ejemplo:
+  - `https://www.totalsingers.com`
+  - `https://totalsingers.com`
 
-## 6) Cambios de modelo (para devs)
+## 6) Cambios de modelo (desarrolladores)
 
 Si cambias schemas en `studio/schemaTypes/*`:
 
-1. Ejecuta studio local y valida.
+1. Valida el studio local.
 2. Despliega schema:
 
 ```bash
@@ -166,25 +186,3 @@ node_modules/typescript/bin/tsc --noEmit --project tsconfig.json
 - Setlist cargado con solistas del equipo.
 - Documento publicado.
 - Verificar en web que aparezca en `/team`, `/shows` y detalles.
-
-## 8) Screenshots (pendiente de adjuntar)
-
-Guarda las capturas en `docs/images/` con estos nombres exactos:
-
-1. `cms-login.png` - Pantalla de acceso al Studio.
-2. `cms-team-member-form.png` - Formulario de Miembro del Equipo.
-3. `cms-show-form.png` - Formulario principal de Evento.
-4. `cms-show-setlist.png` - Setlist con `soloistRefs` seleccionados.
-5. `cms-publish-button.png` - Boton de publicar.
-
-Cuando las agregues al repo, esta seccion quedara visible automaticamente:
-
-![Login CMS](images/cms-login.png)
-
-![Formulario Miembro](images/cms-team-member-form.png)
-
-![Formulario Evento](images/cms-show-form.png)
-
-![Setlist y Solistas](images/cms-show-setlist.png)
-
-![Publicar contenido](images/cms-publish-button.png)
