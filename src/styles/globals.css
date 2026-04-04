@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@config '../../tailwind.config.ts';
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0d0d15;
+    color: #efecf8;
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Epilogue', sans-serif;
+  }
+
+  a {
+    transition-property: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+}
+
+@layer components {
+  /* Glass Card - glassmorphism floating container */
+  .glass-card {
+    @apply bg-surface-variant/40 backdrop-blur-lg border border-outline-variant/20 rounded-lg;
+  }
+
+  /* Gradient Primary button background */
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary-dim to-primary;
+  }
+
+  /* Hero display title */
+  .title-hero {
+    @apply font-black tracking-tighter leading-[0.9];
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-family: 'Epilogue', sans-serif;
+  }
+
+  /* Section heading */
+  .heading-secondary {
+    @apply text-3xl md:text-4xl font-bold tracking-tighter;
+    font-family: 'Epilogue', sans-serif;
+  }
+
+  /* Small uppercase metadata label */
+  .label-uppercase {
+    @apply text-xs uppercase tracking-widest font-bold;
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(186, 158, 255, 0.4);
+  }
+}
