@@ -69,8 +69,12 @@ export const teamData: TeamMember[] = [
     role: 'Soprano / Solista',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC6Q9b0JC06w5FrFpIccpRLs3SHjzF3KP2XL7IroitfXOm4qDAVvxMe7Sx17ryyFcOCyT7st1ik4r_cOrqrQFToE96WQ0S_t1pQ95N6rvgwEZcXskFyxeDfEidabCb-Y1zFRu7pZpMkPrVu1W3y_gPwc-JETm3FYVqNqKWQSNOE3lwfjkbimI6nh6kAjNnZX4LHzSq9h7wzhKXGUoWo7MwiisoqE1Ko_IQGfZNtXdqz-cZqjp7jOwwLmYHv89f3KGNAiGHvUZHRuEs',
     instrument: 'Voz',
-    bio: null,
+    bio: 'Soprano principal y solista del grupo. Apasionada por la música desde los 8 años, Maya aporta potencia y emoción en cada presentación.',
     color: 'primary' as const,
+    socialLinks: {
+      instagram: 'https://instagram.com',
+      tiktok: 'https://tiktok.com',
+    },
   },
   {
     id: '2',
@@ -78,8 +82,12 @@ export const teamData: TeamMember[] = [
     role: 'Bajo / Beatbox',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD69g7aTRbRJY0xI8On6DpSN6_oaSHMA4Memz1lQA_4GBotRbv8FsE9SW13slr-706-ocji2q_KqKzdX9JvGHUG3WpkuJFqx8PfIDbmxOwVUJMOlJh7oQZ7MITGQ1S1pyqW3JNV8HOuqb9Njlxu57zLza1Y4070zu1LJHo-Em5dZNqi9s8ooLHkpZqO_lRrXKo14pOQhmdvtZHkfTKCYT960CCNctoKoWBsGQ0ku5zKL8gRwOAQvC6nl36Gv6afLenoOa-gYYL9udU',
     instrument: 'Voz',
-    bio: null,
+    bio: 'La base rítmica del grupo. Leo combina su voz grave con técnica de beatbox para darle profundidad y energía al sonido de Total Singers.',
     color: 'secondary' as const,
+    socialLinks: {
+      instagram: 'https://instagram.com',
+      youtube: 'https://youtube.com',
+    },
   },
   {
     id: '3',
@@ -87,8 +95,12 @@ export const teamData: TeamMember[] = [
     role: 'Alto / Arreglista',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCxvNbMyVgxXEMRsl21kDN4GW-MSja342L4yYvJAkczHFdHUI1O-v9E5SuTAYzh71kBZiC1LVHxiCZg_UJO0KVfDZQA2Twii4Aeko2RmMTCKuyqgESKpkTBRLBLLtiN2-QsAqOvp1zG8zgUiU-ypvmAO7ZCorALMNbFW8YsSQSmLFAxGQ7jRJ7-sz95cdKRpdcZZBjOIhs33Pm1AbCOHboFnkEeUomdt8RLd6-hlc__oRcDIFULXN9gE4FkE2U2-vkbJOBHCeJCAaI',
     instrument: 'Voz',
-    bio: null,
+    bio: 'Arreglista musical y voz alto del colectivo. Chloe es quien da forma a las capas armónicas que hacen único el sonido del grupo.',
     color: 'tertiary' as const,
+    socialLinks: {
+      instagram: 'https://instagram.com',
+      facebook: 'https://facebook.com',
+    },
   },
   {
     id: '4',
@@ -96,7 +108,12 @@ export const teamData: TeamMember[] = [
     role: 'Tenor / Teclista',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAoCCurOR5VaCJcStpd7bDVojXnX3Y6tzKVo47ZRrMaVfqRhbQ27E81v01rWZLOmIBcTk10gcO1EH4nFu8oIhzbzNxkdplPwbEZLO87NKbjlhyDlI-rg0AE15J75olkKAjNyeKC03GhKRnGCSsjeUUKYL9xBlUlhi_eWKRSm3wXgXBNR7N90JPnb2Av6GNef6RaoHkycVnUmGZTNCweWeiTi5k9a3qGzeY94R8ODOPkUM6D1DzetEXPJ0QmgYvXtHkTH1R8yj4_Paw',
     instrument: 'Voz',
-    bio: null,
+    bio: 'Tenor melódico y multiinstrumentista del grupo. Daniel aporta textura y calidez vocal, además de las bases de teclado en las presentaciones.',
     color: 'primary' as const,
+    socialLinks: {
+      instagram: 'https://instagram.com',
+      tiktok: 'https://tiktok.com',
+      youtube: 'https://youtube.com',
+    },
   },
 ];

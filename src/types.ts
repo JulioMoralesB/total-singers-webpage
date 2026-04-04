@@ -17,6 +17,13 @@ export interface Track {
   soloists?: string[];
 }
 
+export interface SocialLinks {
+  instagram?: string;
+  tiktok?: string;
+  facebook?: string;
+  youtube?: string;
+}
+
 export interface TeamMember {
   id: string;
   name: string;
@@ -25,4 +32,5 @@ export interface TeamMember {
   instrument?: string;
   bio?: string | null;
   color?: 'primary' | 'secondary' | 'tertiary';
+  socialLinks?: SocialLinks;
 }

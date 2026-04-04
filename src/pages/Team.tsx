@@ -30,6 +30,7 @@ export const Team: React.FC = () => {
             {teamData.map((member, index) => (
               <SingerCard
                 key={member.id}
+                id={member.id}
                 name={member.name}
                 role={member.role}
                 image={member.image}
