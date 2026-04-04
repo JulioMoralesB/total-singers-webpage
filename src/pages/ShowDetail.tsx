@@ -19,8 +19,8 @@ const formatDateShort = (dateStr: string) => {
 }
 
 export const ShowDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const show = showsData.find((s) => s.id === id)
+  const { slug } = useParams<{ slug: string }>()
+  const show = showsData.find((s) => s.slug === slug)
 
   if (!show) {
     return <Navigate to="/shows" replace />

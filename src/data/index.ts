@@ -3,6 +3,7 @@ import type { Show, TeamMember } from '../types'
 export const showsData: Show[] = [
   {
     id: '1',
+    slug: 'armonias-neon-concierto-especial',
     title: 'Armonías Neon - Concierto Especial',
     date: '2025-09-15',
     location: 'Auditorio Principal',
@@ -45,6 +46,7 @@ export const showsData: Show[] = [
   },
   {
     id: '2',
+    slug: 'voces-en-sintonia',
     title: 'Voces en Sintonía',
     date: '2025-10-20',
     location: 'Teatro Municipal',
@@ -53,6 +55,7 @@ export const showsData: Show[] = [
   },
   {
     id: '3',
+    slug: 'pop-sincronizado-tour',
     title: 'Pop Sincronizado Tour',
     date: '2025-11-10',
     location: 'Sala de Conciertos',

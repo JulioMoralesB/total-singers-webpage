@@ -65,7 +65,7 @@ export const Shows: React.FC = () => {
                     <span>{show.venue}</span>
                   </div>
                   <p className="text-on-surface-variant text-sm mt-1">{formatDateFull(show.date)}</p>
-                  <Link to={`/shows/${show.id}`} className="block mt-4">
+                  <Link to={`/shows/${show.slug}`} className="block mt-4">
                     <Button variant="primary" size="sm" className="w-full">Ver Detalles</Button>
                   </Link>
                 </div>
