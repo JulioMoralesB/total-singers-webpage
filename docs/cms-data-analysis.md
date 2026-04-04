@@ -188,10 +188,20 @@ export interface Track {
 
 ## 4. Funciones de formato de fecha
 
-Ambas funciones son utilitarias locales, definidas en cada página que las necesita (no están centralizadas):
+Las funciones de fecha son utilitarias locales, definidas en cada página que las necesita (no están centralizadas). Importante: existen **dos variantes distintas** de `formatDateShort` según la página:
 
 ```ts
-// Formato corto: "15 sep." — usado en badges de fecha
+// Home.tsx — variante "corta" usada en el hero de "Próxima Presentación"
+// Ejemplo: "15 septiembre 2025"
+const formatDateShort = (dateStr: string) => {
+  const [year, month, day] = dateStr.split('-').map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString('es-ES', {
+    day: 'numeric', month: 'long', year: 'numeric',
+  })
+}
+
+// Shows.tsx / ShowDetail.tsx — variante "corta" usada en badges de fecha
+// Ejemplo: "15 sep."
 const formatDateShort = (dateStr: string) => {
   const [year, month, day] = dateStr.split('-').map(Number)
   return new Date(year, month - 1, day).toLocaleDateString('es-ES', {
@@ -199,7 +209,8 @@ const formatDateShort = (dateStr: string) => {
   })
 }
 
-// Formato largo: "lunes, 15 de septiembre de 2025" — usado en detalle de evento
+// Shows.tsx / ShowDetail.tsx — formato largo de evento
+// Ejemplo: "lunes, 15 de septiembre de 2025"
 const formatDateFull = (dateStr: string) => {
   const [year, month, day] = dateStr.split('-').map(Number)
   return new Date(year, month - 1, day).toLocaleDateString('es-ES', {
