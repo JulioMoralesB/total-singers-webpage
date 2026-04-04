@@ -29,7 +29,6 @@ export const Home: React.FC = () => {
         <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-8 w-full">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-6 max-w-4xl">
-              <Badge color="primary">Próxima Generación Pop Coral</Badge>
               <h1 className="title-hero text-on-surface">
                 HACEMOS <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary italic">
