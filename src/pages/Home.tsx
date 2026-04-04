@@ -13,6 +13,7 @@ const formatDateShort = (dateStr: string) => {
   })
 }
 
+
 export const Home: React.FC = () => {
   const featuredShow = showsData[0]
 
