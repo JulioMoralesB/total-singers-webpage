@@ -36,7 +36,7 @@ pipeline {
             steps {
                 sh """
                     pm2 delete total-singers || true
-                    pm2 serve dist ${params.PORT} --name total-singers --spa
+                    pm2 serve ${WORKSPACE}/dist ${params.PORT} --name total-singers --spa
                     pm2 save
                 """
             }
