@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Badge } from '../components/Badge'
 import { Button } from '../components/Button'
-import { Card } from '../components/Card'
 import { SingerCard } from '../components/SingerCard'
 import { showsData, teamData } from '../data'
 

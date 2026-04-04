@@ -1,6 +1,5 @@
 import React from 'react'
 import { Badge } from '../components/Badge'
-import { Card } from '../components/Card'
 import { teamData } from '../data'
 import { SingerCard } from '../components/SingerCard'
 
