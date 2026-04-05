@@ -3,6 +3,7 @@ import { Badge } from '../components/Badge'
 import { useShows } from '../hooks/useShows'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
+import { formatTime12h } from '../lib/format'
 
 const formatDateShort = (dateStr: string) => {
   const [year, month, day] = dateStr.split('-').map(Number)
@@ -16,14 +17,6 @@ const formatDateFull = (dateStr: string) => {
   return new Date(year, month - 1, day).toLocaleDateString('es-ES', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   })
-}
-
-const formatTime12h = (time24: string) => {
-  const [hourStr, minuteStr] = time24.split(':')
-  const hour = Number(hourStr)
-  const period = hour >= 12 ? 'PM' : 'AM'
-  const hour12 = ((hour + 11) % 12) + 1
-  return `${hour12}:${minuteStr} ${period}`
 }
 
 export const Shows: React.FC = () => {

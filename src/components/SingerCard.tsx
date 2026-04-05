@@ -26,8 +26,8 @@ export const SingerCard: React.FC<SingerCardProps> = ({
         src={image}
       />
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{ backgroundColor: color + '33' }}
+        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity"
+        style={{ backgroundColor: color }}
         aria-hidden="true"
       />
     </div>

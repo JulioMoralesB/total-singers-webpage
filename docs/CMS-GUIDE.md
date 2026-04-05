@@ -1,13 +1,13 @@
-# Guia CMS - Total Singers
+# Guía CMS - Total Singers
 
-Esta guia explica como gestionar contenido en Sanity Studio para el sitio de Total Singers.
-Esta orientada a editores, administradores y nuevos colaboradores.
+Esta guía explica cómo gestionar contenido en Sanity Studio para el sitio de Total Singers.
+Está orientada a editores, administradores y nuevos colaboradores.
 
-## 1) Acceso rapido
+## 1) Acceso rápido
 
 Studio desplegado:
 
-- Produccion: https://total-singers.sanity.studio/production
+- Producción: https://total-singers.sanity.studio/production
 - Staging: https://total-singers.sanity.studio/staging
 
 Studio local:
@@ -18,7 +18,7 @@ npm install
 npm run dev
 ```
 
-En local tambien veras dos workspaces:
+En local también verás dos workspaces:
 
 - `/production`
 - `/staging`
@@ -44,7 +44,7 @@ Campos clave:
 
 Notas:
 
-- El perfil publico usa `slug`: `/team/:slug`.
+- El perfil público usa `slug`: `/team/:slug`.
 - Las redes se completan con usuario, no con URL completa.
 
 ### Show (Evento / Recital)
@@ -64,7 +64,7 @@ Campos clave:
 - `image` (obligatorio)
 - `setlist` (opcional)
 
-Campos por cancion (`setlist[]`):
+Campos por canción (`setlist[]`):
 
 - `number` (obligatorio)
 - `title` (obligatorio)
@@ -93,7 +93,7 @@ Notas:
 
 1. Entra a `Evento / Recital`.
 2. Crea o edita un documento.
-3. Completa datos generales (titulo, fecha, lugar, horas).
+3. Completa datos generales (título, fecha, lugar, horas).
 4. Escribe `description` en markdown.
 5. Sube imagen.
 6. Carga `setlist` y selecciona `soloistRefs`.
@@ -103,22 +103,22 @@ Notas:
 
 ![Setlist con solistas referenciados](images/cms-show-setlist.png)
 
-![Publicacion del contenido](images/cms-publish-button.png)
+![Publicación del contenido](images/cms-publish-button.png)
 
 ### Eliminar contenido
 
 - Usa `Delete` en el documento.
 - Antes de borrar, verifica que no haya links activos apuntando a ese contenido.
 
-## 4) Relacion CMS -> Frontend
+## 4) Relación CMS → Frontend
 
-Paginas:
+Páginas:
 
 - Team: `src/pages/Team.tsx`, `src/pages/SingerDetail.tsx`
 - Shows: `src/pages/Shows.tsx`, `src/pages/ShowDetail.tsx`
 - Home: destacados de equipo y shows en `src/pages/Home.tsx`
 
-Integracion:
+Integración:
 
 - Cliente Sanity y GROQ: `src/lib/sanity.ts`
 - Hook team: `src/hooks/useTeamMembers.ts`
@@ -127,9 +127,9 @@ Integracion:
 Comportamientos importantes:
 
 - Horas visibles en formato AM/PM.
-- Duracion del programa:
+- Duración del programa:
   - Usa `estimatedDurationMinutes` si existe.
-  - Si no existe, se calcula desde setlist y suma 1 minuto extra por cancion.
+  - Si no existe, se calcula desde setlist y suma 1 minuto extra por canción.
 
 ## 5) Entornos y despliegue
 
@@ -140,17 +140,17 @@ Comportamientos importantes:
 
 En Vercel:
 
-- Production -> `VITE_SANITY_DATASET=production`
-- Preview -> `VITE_SANITY_DATASET=staging`
+- Production → `VITE_SANITY_DATASET=production`
+- Preview → `VITE_SANITY_DATASET=staging`
 
 Archivos locales:
 
 - `.env` (no versionar)
-- `.env.example` (si versionar)
+- `.env.example` (sí versionar)
 
 ### CORS en Sanity
 
-Agregar origenes permitidos, por ejemplo:
+Agregar orígenes permitidos, por ejemplo:
 
 - https://www.totalsingers.com
 - https://totalsingers.com
@@ -158,20 +158,20 @@ Agregar origenes permitidos, por ejemplo:
 
 ### Promover de staging a production
 
-En el workspace `staging`, cada documento de `Miembro del Equipo` y `Evento / Recital` tiene la accion `Promover a Production`.
+En el workspace `staging`, cada documento de `Miembro del Equipo` y `Evento / Recital` tiene la acción `Promover a Production`.
 
 Uso recomendado:
 
 1. Edita y revisa el documento en `staging`.
-2. Abre el menu de acciones del documento.
+2. Abre el menú de acciones del documento.
 3. Ejecuta `Promover a Production`.
-4. Confirma la accion.
+4. Confirma la acción.
 
 Notas:
 
-- La accion copia la version actual del documento a `production` y la deja publicada.
-- Si el documento ya existe en `production`, se reemplaza por la version de `staging`.
-- Las imagenes siguen funcionando porque viven a nivel proyecto, no por dataset.
+- La acción copia la versión actual del documento a `production` y la deja publicada.
+- Si el documento ya existe en `production`, se reemplaza por la versión de `staging`.
+- Las imágenes siguen funcionando porque viven a nivel proyecto, no por dataset.
 
 ### Deploy del Studio
 
@@ -199,9 +199,9 @@ cd studio
 node_modules/typescript/bin/tsc --noEmit --project tsconfig.json
 ```
 
-## 7) Checklist rapido para editores
+## 7) Checklist rápido para editores
 
 - Crear/editar en `staging` primero.
 - Revisar cambios en web preview.
-- Publicar o replicar en `production` cuando este aprobado.
+- Publicar o replicar en `production` cuando esté aprobado.
 - Verificar rutas finales: `/team`, `/team/:slug`, `/shows`, `/shows/:slug`.

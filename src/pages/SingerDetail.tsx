@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useTeamMembers } from '../hooks/useTeamMembers'
 import { Badge } from '../components/Badge'
 import { Button } from '../components/Button'
+import { hexToRgba, resolveColor } from '../lib/colorUtils'
 
 const socialMeta: Record<string, { icon: string; label: string; baseUrl: string }> = {
   instagram: { icon: 'photo_camera', label: 'Instagram', baseUrl: 'https://instagram.com/' },
@@ -33,7 +34,7 @@ export const SingerDetail: React.FC = () => {
     )
   }
 
-  const color = member.color ?? '#ba9eff'
+  const color = resolveColor(member.color ?? 'primary')
 
   return (
     <div className="bg-surface min-h-screen">
@@ -41,7 +42,7 @@ export const SingerDetail: React.FC = () => {
         <div className="absolute inset-0 z-0" aria-hidden="true">
           <div
             className="absolute top-0 left-0 w-[600px] h-[600px] blur-[160px] rounded-full -translate-x-1/3 -translate-y-1/3"
-            style={{ background: `linear-gradient(to bottom right, ${color}4d, transparent)` }}
+            style={{ background: `linear-gradient(to bottom right, ${hexToRgba(color, 0.3)}, transparent)` }}
           />
         </div>
 
@@ -59,7 +60,7 @@ export const SingerDetail: React.FC = () => {
             <div className="relative">
               <div
                 className="absolute -inset-4 blur-3xl rounded-full"
-                style={{ background: `linear-gradient(to bottom right, ${color}4d, transparent)` }}
+                style={{ background: `linear-gradient(to bottom right, ${hexToRgba(color, 0.3)}, transparent)` }}
                 aria-hidden="true"
               />
               <img

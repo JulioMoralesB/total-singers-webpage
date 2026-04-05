@@ -126,7 +126,11 @@ export const showType = defineType({
               title: 'Duración',
               description: 'Formato mm:ss (ej. 3:45)',
               type: 'string',
-              validation: (Rule) => Rule.required(),
+              validation: (Rule) =>
+                Rule.required().regex(/^([0-9]|[1-9][0-9]):([0-5][0-9])$/, {
+                  name: 'duration',
+                  invert: false,
+                }).error('Usa formato mm:ss, por ejemplo 3:45'),
             }),
             defineField({
               name: 'soloistRefs',

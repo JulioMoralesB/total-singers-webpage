@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import type {ChangeEvent} from 'react'
 import {set} from 'sanity'
 import type {StringInputProps} from 'sanity'
 
@@ -26,7 +27,7 @@ export function ColorSwatchInput(props: StringInputProps) {
     onChange(set(hex))
   }
 
-  function handleCustomChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleCustomChange(e: ChangeEvent<HTMLInputElement>) {
     const raw = e.target.value
     setCustomHex(raw)
     if (HEX_RE.test(raw)) onChange(set(raw))

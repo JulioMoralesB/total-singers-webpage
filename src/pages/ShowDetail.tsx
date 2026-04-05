@@ -4,6 +4,7 @@ import { Badge } from '../components/Badge'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useShows } from '../hooks/useShows'
+import { formatTime12h } from '../lib/format'
 import type { Track } from '../types'
 
 const formatDateFull = (dateStr: string) => {
@@ -18,14 +19,6 @@ const formatDateShort = (dateStr: string) => {
   return new Date(year, month - 1, day).toLocaleDateString('es-ES', {
     day: 'numeric', month: 'short',
   })
-}
-
-const formatTime12h = (time24: string) => {
-  const [hourStr, minuteStr] = time24.split(':')
-  const hour = Number(hourStr)
-  const period = hour >= 12 ? 'PM' : 'AM'
-  const hour12 = ((hour + 11) % 12) + 1
-  return `${hour12}:${minuteStr} ${period}`
 }
 
 export const ShowDetail: React.FC = () => {

@@ -86,6 +86,6 @@ Instagram: [@total.singers](https://instagram.com/total.singers)
 
 ## CMS
 
-La documentacion de gestion de contenido (editores y desarrolladores) esta en:
+La documentación de gestión de contenido (editores y desarrolladores) está en:
 
 - [docs/CMS-GUIDE.md](docs/CMS-GUIDE.md)

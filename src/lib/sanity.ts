@@ -18,7 +18,7 @@ export const sanityClient = createClient({
  *   _id           → id
  *   slug.current  → slug
  *   image.asset->url → image  (resolved CDN URL)
- *   color.hex     → color     (hex string from @sanity/color-input)
+ *   color         → color     (plain string)
  */
 export const TEAM_MEMBERS_QUERY = /* groq */ `
   *[_type == "teamMember"] | order(_createdAt asc) {
