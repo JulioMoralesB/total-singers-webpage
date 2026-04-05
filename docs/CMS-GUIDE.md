@@ -1,15 +1,16 @@
 # Guia CMS - Total Singers
 
-Esta guia explica como administrar el contenido del sitio desde Sanity Studio.
-Esta pensada para editores y colaboradores que no necesitan tocar codigo.
+Esta guia explica como gestionar contenido en Sanity Studio para el sitio de Total Singers.
+Esta orientada a editores, administradores y nuevos colaboradores.
 
-## 1) Acceso al CMS
+## 1) Acceso rapido
 
-### Opcion recomendada (produccion)
+Studio desplegado:
 
-- https://total-singers.sanity.studio/
+- Produccion: https://total-singers.sanity.studio/production
+- Staging: https://total-singers.sanity.studio/staging
 
-### Opcion local (desarrollo)
+Studio local:
 
 ```bash
 cd studio
@@ -17,158 +18,177 @@ npm install
 npm run dev
 ```
 
-Luego:
+En local tambien veras dos workspaces:
 
-Inicia sesion con tu cuenta autorizada de Sanity.
+- `/production`
+- `/staging`
+
+Usa `staging` para pruebas y deja `production` solo para contenido aprobado.
+
 ![Acceso al Studio](images/cms-login.png)
-
-
 
 ## 2) Modelos de contenido
 
 ### Team Member (Miembro del Equipo)
 
-Campos principales:
+Campos clave:
 
-- `name` (string, obligatorio)
-- `slug` (slug, obligatorio, autogenerado desde `name`)
-- `role` (string, obligatorio)
-- `image` (image, obligatorio)
-- `instrument` (string, opcional)
-- `bio` (text, opcional)
-- `color` (string, opcional)
-- `socialLinks.instagram` (string, opcional, solo usuario)
-- `socialLinks.tiktok` (string, opcional, solo usuario)
-- `socialLinks.facebook` (string, opcional, solo usuario)
-- `socialLinks.youtube` (string, opcional, solo usuario)
+- `name` (obligatorio)
+- `slug` (obligatorio, autogenerado)
+- `role` (obligatorio)
+- `image` (obligatorio)
+- `instrument` (opcional)
+- `bio` (opcional)
+- `color` (opcional, presets + hex)
+- `socialLinks.*` (opcional, solo usuario)
 
 Notas:
 
-- El color usa presets visuales y opcion hex personalizada.
-- El frontend usa `slug` para el perfil (`/team/:slug`).
+- El perfil publico usa `slug`: `/team/:slug`.
+- Las redes se completan con usuario, no con URL completa.
 
 ### Show (Evento / Recital)
 
-Campos principales:
+Campos clave:
 
-- `title` (string, obligatorio)
-- `slug` (slug, obligatorio, autogenerado desde `title`)
-- `date` (date, obligatorio)
-- `eventTime` (string `HH:mm`, opcional)
-- `doorsOpenTime` (string `HH:mm`, opcional)
-- `estimatedDurationMinutes` (number, opcional)
-- `venue` (string, obligatorio)
-- `location` (string, obligatorio)
-- `locationUrl` (url, opcional)
-- `description` (text markdown, opcional)
-- `image` (image, obligatorio)
-- `setlist` (array, opcional)
+- `title` (obligatorio)
+- `slug` (obligatorio, autogenerado)
+- `date` (obligatorio)
+- `eventTime` (opcional, `HH:mm`)
+- `doorsOpenTime` (opcional, `HH:mm`)
+- `estimatedDurationMinutes` (opcional)
+- `venue` (obligatorio)
+- `location` (obligatorio)
+- `locationUrl` (opcional)
+- `description` (opcional, markdown)
+- `image` (obligatorio)
+- `setlist` (opcional)
 
 Campos por cancion (`setlist[]`):
 
-- `number` (number, obligatorio)
-- `title` (string, obligatorio)
-- `artist` (string, obligatorio)
-- `duration` (string `mm:ss`, obligatorio)
-- `soloistRefs` (array de referencias a `teamMember`, opcional)
+- `number` (obligatorio)
+- `title` (obligatorio)
+- `artist` (obligatorio)
+- `duration` (obligatorio, `mm:ss`)
+- `soloistRefs` (opcional, referencias a `teamMember`)
 
 Notas:
 
-- `soloistRefs` conecta canciones con miembros reales del equipo.
-- En el frontend, cada solista se muestra como link a su perfil cuando existe `slug`.
+- `soloistRefs` evita errores de texto y enlaza a miembros reales.
+- En la web, los solistas se muestran como links al perfil.
 
-## 3) Flujo editorial (sin codigo)
+## 3) Flujo editorial
 
 ### Crear o editar miembro
 
-1. Abre `Miembro del Equipo`.
-2. Crea o edita el registro.
-3. Sube foto en `image`.
-4. Completa `name`, `role`, `instrument`, `bio`, color y redes.
+1. Entra a `Miembro del Equipo`.
+2. Crea o edita un documento.
+3. Sube `image`.
+4. Completa datos principales y redes.
 5. Publica.
 
 ![Formulario Miembro del Equipo](images/cms-team-member-form.png)
 
 ### Crear o editar evento
 
-1. Abre `Evento / Recital`.
-2. Crea o edita el registro.
-3. Completa datos generales (`title`, `date`, `venue`, `location`, horas).
-4. Escribe la descripcion en markdown en `description`.
-5. Sube imagen en `image`.
+1. Entra a `Evento / Recital`.
+2. Crea o edita un documento.
+3. Completa datos generales (titulo, fecha, lugar, horas).
+4. Escribe `description` en markdown.
+5. Sube imagen.
+6. Carga `setlist` y selecciona `soloistRefs`.
+7. Publica.
+
 ![Formulario principal de Evento](images/cms-show-form.png)
 
-6. En `setlist`, agrega canciones y selecciona solistas en `soloistRefs`.
-
 ![Setlist con solistas referenciados](images/cms-show-setlist.png)
-
-7. Publica.
 
 ![Publicacion del contenido](images/cms-publish-button.png)
 
 ### Eliminar contenido
 
-- Abre el documento y usa `Delete`.
-- Verifica antes que ese contenido no este enlazado desde paginas activas.
+- Usa `Delete` en el documento.
+- Antes de borrar, verifica que no haya links activos apuntando a ese contenido.
 
 ## 4) Relacion CMS -> Frontend
 
-Mapeo principal:
+Paginas:
 
-- Team:
-  - Lista: `src/pages/Team.tsx`
-  - Destacados home: `src/pages/Home.tsx`
-  - Detalle: `src/pages/SingerDetail.tsx`
-- Shows:
-  - Lista: `src/pages/Shows.tsx`
-  - Detalle: `src/pages/ShowDetail.tsx`
+- Team: `src/pages/Team.tsx`, `src/pages/SingerDetail.tsx`
+- Shows: `src/pages/Shows.tsx`, `src/pages/ShowDetail.tsx`
+- Home: destacados de equipo y shows en `src/pages/Home.tsx`
 
-Cliente y hooks:
+Integracion:
 
-- Cliente Sanity: `src/lib/sanity.ts`
-- Hook miembros: `src/hooks/useTeamMembers.ts`
-- Hook eventos: `src/hooks/useShows.ts`
+- Cliente Sanity y GROQ: `src/lib/sanity.ts`
+- Hook team: `src/hooks/useTeamMembers.ts`
+- Hook shows: `src/hooks/useShows.ts`
 
-Comportamientos clave:
+Comportamientos importantes:
 
-- Las horas se muestran en formato AM/PM.
+- Horas visibles en formato AM/PM.
 - Duracion del programa:
-  - Si `estimatedDurationMinutes` existe, se usa ese valor.
-  - Si no existe, se calcula desde `setlist` sumando 1 minuto extra por cancion.
+  - Usa `estimatedDurationMinutes` si existe.
+  - Si no existe, se calcula desde setlist y suma 1 minuto extra por cancion.
 
-## 5) API y variables de entorno
+## 5) Entornos y despliegue
 
-Variables necesarias en frontend:
+### Variables de entorno frontend
 
 - `VITE_SANITY_PROJECT_ID`
 - `VITE_SANITY_DATASET`
 
-Archivos:
+En Vercel:
 
-- `.env` (local, no versionar)
-- `.env.example` (plantilla para el equipo)
+- Production -> `VITE_SANITY_DATASET=production`
+- Preview -> `VITE_SANITY_DATASET=staging`
 
-CORS en Sanity (produccion):
+Archivos locales:
 
-- Agregar dominios reales del sitio, por ejemplo:
-  - `https://www.totalsingers.com`
-  - `https://totalsingers.com`
+- `.env` (no versionar)
+- `.env.example` (si versionar)
 
-## 6) Cambios de modelo (desarrolladores)
+### CORS en Sanity
 
-Si cambias schemas en `studio/schemaTypes/*`:
+Agregar origenes permitidos, por ejemplo:
 
-1. Valida el studio local.
-2. Despliega schema:
+- https://www.totalsingers.com
+- https://totalsingers.com
+- Preview domain de Vercel (si aplica)
+
+### Promover de staging a production
+
+En el workspace `staging`, cada documento de `Miembro del Equipo` y `Evento / Recital` tiene la accion `Promover a Production`.
+
+Uso recomendado:
+
+1. Edita y revisa el documento en `staging`.
+2. Abre el menu de acciones del documento.
+3. Ejecuta `Promover a Production`.
+4. Confirma la accion.
+
+Notas:
+
+- La accion copia la version actual del documento a `production` y la deja publicada.
+- Si el documento ya existe en `production`, se reemplaza por la version de `staging`.
+- Las imagenes siguen funcionando porque viven a nivel proyecto, no por dataset.
+
+### Deploy del Studio
 
 ```bash
 cd studio
-npx sanity deploy
+npx sanity deploy --url total-singers -y
 ```
 
-3. Ajusta tipos en `src/types.ts`.
-4. Ajusta proyecciones GROQ en `src/lib/sanity.ts`.
-5. Verifica TypeScript:
+## 6) Cambios de schema (desarrolladores)
+
+Cuando cambies `studio/schemaTypes/*`:
+
+1. Prueba en local (`staging`).
+2. Ajusta tipos frontend (`src/types.ts`).
+3. Ajusta queries GROQ (`src/lib/sanity.ts`).
+4. Verifica TypeScript en frontend y studio.
+5. Haz deploy del studio.
 
 ```bash
 # Frontend
@@ -181,8 +201,7 @@ node_modules/typescript/bin/tsc --noEmit --project tsconfig.json
 
 ## 7) Checklist rapido para editores
 
-- Miembro nuevo con foto, rol, bio y redes.
-- Evento nuevo con fecha, lugar, horas y descripcion.
-- Setlist cargado con solistas del equipo.
-- Documento publicado.
-- Verificar en web que aparezca en `/team`, `/shows` y detalles.
+- Crear/editar en `staging` primero.
+- Revisar cambios en web preview.
+- Publicar o replicar en `production` cuando este aprobado.
+- Verificar rutas finales: `/team`, `/team/:slug`, `/shows`, `/shows/:slug`.
