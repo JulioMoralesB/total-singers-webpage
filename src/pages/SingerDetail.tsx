@@ -1,31 +1,29 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { teamData } from '../data'
+import { useTeamMembers } from '../hooks/useTeamMembers'
 import { Badge } from '../components/Badge'
 import { Button } from '../components/Button'
+import { hexToRgba, resolveColor } from '../lib/colorUtils'
 
-const socialIcons: Record<string, { icon: string; label: string }> = {
-  instagram: { icon: 'photo_camera', label: 'Instagram' },
-  tiktok:    { icon: 'music_video',  label: 'TikTok'    },
-  facebook:  { icon: 'groups',       label: 'Facebook'  },
-  youtube:   { icon: 'smart_display', label: 'YouTube'  },
-}
-
-const colorMap = {
-  primary:   'from-primary/30',
-  secondary: 'from-secondary/30',
-  tertiary:  'from-tertiary/30',
-}
-
-const textColorMap = {
-  primary:   'text-primary',
-  secondary: 'text-secondary',
-  tertiary:  'text-tertiary',
+const socialMeta: Record<string, { icon: string; label: string; baseUrl: string }> = {
+  instagram: { icon: 'photo_camera', label: 'Instagram', baseUrl: 'https://instagram.com/' },
+  tiktok:    { icon: 'music_video',  label: 'TikTok',    baseUrl: 'https://tiktok.com/@'   },
+  facebook:  { icon: 'groups',       label: 'Facebook',  baseUrl: 'https://facebook.com/'  },
+  youtube:   { icon: 'smart_display', label: 'YouTube',  baseUrl: 'https://youtube.com/@'  },
 }
 
 export const SingerDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const member = teamData.find(m => m.id === id)
+  const { slug } = useParams<{ slug: string }>()
+  const { data: members, loading } = useTeamMembers()
+  const member = members.find(m => m.slug === slug)
+
+  if (loading) {
+    return (
+      <div className="bg-surface min-h-screen flex items-center justify-center">
+        <p className="text-on-surface-variant">Cargando…</p>
+      </div>
+    )
+  }
 
   if (!member) {
     return (
@@ -36,13 +34,16 @@ export const SingerDetail: React.FC = () => {
     )
   }
 
-  const color = member.color ?? 'primary'
+  const color = resolveColor(member.color ?? 'primary')
 
   return (
     <div className="bg-surface min-h-screen">
       <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 z-0" aria-hidden="true">
-          <div className={`absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br ${colorMap[color]} to-transparent blur-[160px] rounded-full -translate-x-1/3 -translate-y-1/3`} />
+          <div
+            className="absolute top-0 left-0 w-[600px] h-[600px] blur-[160px] rounded-full -translate-x-1/3 -translate-y-1/3"
+            style={{ background: `linear-gradient(to bottom right, ${hexToRgba(color, 0.3)}, transparent)` }}
+          />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8">
@@ -57,7 +58,11 @@ export const SingerDetail: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             {/* Imagen */}
             <div className="relative">
-              <div className={`absolute -inset-4 bg-gradient-to-br ${colorMap[color]} to-transparent blur-3xl rounded-full`} aria-hidden="true" />
+              <div
+                className="absolute -inset-4 blur-3xl rounded-full"
+                style={{ background: `linear-gradient(to bottom right, ${hexToRgba(color, 0.3)}, transparent)` }}
+                aria-hidden="true"
+              />
               <img
                 src={member.image}
                 alt={member.name}
@@ -72,6 +77,13 @@ export const SingerDetail: React.FC = () => {
                 {member.name}
               </h1>
 
+              {member.instrument && (
+                <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/30">
+                  <span className="material-symbols-outlined text-sm text-secondary" aria-hidden="true">piano</span>
+                  <span className="text-sm font-medium text-on-surface">{member.instrument}</span>
+                </div>
+              )}
+
               {member.bio && (
                 <p className="text-on-surface-variant text-lg leading-relaxed font-body">
                   {member.bio}
@@ -82,16 +94,17 @@ export const SingerDetail: React.FC = () => {
                 <div className="flex flex-col gap-3 pt-2">
                   <p className="label-uppercase text-on-surface-variant text-xs">Redes sociales</p>
                   <div className="flex flex-wrap gap-3">
-                    {Object.entries(member.socialLinks).map(([platform, url]) => {
-                      const social = socialIcons[platform]
-                      if (!social || !url) return null
+                    {Object.entries(member.socialLinks).map(([platform, username]) => {
+                      const social = socialMeta[platform]
+                      if (!social || !username) return null
                       return (
                         <a
                           key={platform}
-                          href={url}
+                          href={social.baseUrl + username}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`glass-card px-4 py-2 flex items-center gap-2 text-sm font-semibold hover:border-primary/40 transition-colors ${textColorMap[color]}`}
+                          className="glass-card px-4 py-2 flex items-center gap-2 text-sm font-semibold transition-colors"
+                          style={{ color }}
                         >
                           <span className="material-symbols-outlined text-base" aria-hidden="true">{social.icon}</span>
                           {social.label}

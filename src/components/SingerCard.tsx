@@ -2,26 +2,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 interface SingerCardProps {
-  id?: string
+  slug?: string
   name: string
   role: string
   image: string
-  color?: 'primary' | 'secondary' | 'tertiary'
+  color?: string
   className?: string
 }
 
-const hoverColorMap = {
-  primary: 'bg-primary/20',
-  secondary: 'bg-secondary/20',
-  tertiary: 'bg-tertiary/20',
-}
-
 export const SingerCard: React.FC<SingerCardProps> = ({
-  id,
+  slug,
   name,
   role,
   image,
-  color = 'primary',
+  color = '#ba9eff',
   className = '',
 }) => {
   const imageBlock = (
@@ -32,7 +26,8 @@ export const SingerCard: React.FC<SingerCardProps> = ({
         src={image}
       />
       <div
-        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity ${hoverColorMap[color]}`}
+        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity"
+        style={{ backgroundColor: color }}
         aria-hidden="true"
       />
     </div>
@@ -40,8 +35,8 @@ export const SingerCard: React.FC<SingerCardProps> = ({
 
   return (
     <div className={`group ${className}`}>
-      {id ? (
-        <Link to={`/team/${id}`} className="block cursor-pointer">
+      {slug ? (
+        <Link to={`/team/${slug}`} className="block cursor-pointer">
           {imageBlock}
         </Link>
       ) : (

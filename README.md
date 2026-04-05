@@ -15,9 +15,9 @@ Sitio web de **Total Singers**, un conjunto vocal de alto rendimiento que combin
 |------|-------------|
 | `/` | Inicio — Hero, filosofía, equipo destacado y CTA |
 | `/shows` | Recitales — Lista de próximas presentaciones |
-| `/shows/:id` | Detalle de recital |
-| `/setlist` | Itinerario — Lista de canciones del concierto |
+| `/shows/:slug` | Detalle de recital |
 | `/team` | Equipo — Grid completo de miembros |
+| `/team/:slug` | Perfil de miembro |
 | `/about` | Acerca de Total Singers |
 | `/privacy` | Política de privacidad |
 | `/terms` | Términos de servicio |
@@ -58,8 +58,8 @@ src/
 │   ├── Home.tsx
 │   ├── Shows.tsx
 │   ├── ShowDetail.tsx
-│   ├── Setlist.tsx
 │   ├── Team.tsx
+│   ├── SingerDetail.tsx
 │   ├── About.tsx
 │   ├── Privacy.tsx
 │   └── Terms.tsx
@@ -76,8 +76,16 @@ Los colores, tipografía y espaciado están definidos en `tailwind.config.ts` ba
 
 ## Datos
 
-Los datos de shows, setlist y miembros del equipo se gestionan en `src/data/index.ts`. Para agregar o modificar contenido, edita ese archivo.
+El contenido principal del sitio se consume desde Sanity CMS (hooks en `src/hooks/` y queries en `src/lib/sanity.ts`).
+
+`src/data/index.ts` queda como fallback local de desarrollo.
 
 ## Redes Sociales
 
 Instagram: [@total.singers](https://instagram.com/total.singers)
+
+## CMS
+
+La documentación de gestión de contenido (editores y desarrolladores) está en:
+
+- [docs/CMS-GUIDE.md](docs/CMS-GUIDE.md)

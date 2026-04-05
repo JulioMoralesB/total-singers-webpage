@@ -1,20 +1,23 @@
 import React from 'react'
+import { hexToRgba, resolveColor } from '../lib/colorUtils'
 
 interface BadgeProps {
   children: React.ReactNode
-  color?: 'primary' | 'secondary' | 'tertiary'
+  color?: string
   className?: string
 }
 
 export const Badge: React.FC<BadgeProps> = ({ children, color = 'primary', className = '' }) => {
-  const colorStyles = {
-    primary: 'bg-primary/10 text-primary border border-primary/20',
-    secondary: 'bg-secondary/10 text-secondary border border-secondary/20',
-    tertiary: 'bg-tertiary/10 text-tertiary border border-tertiary/20',
-  }
-
+  const resolvedColor = resolveColor(color)
   return (
-    <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${colorStyles[color]} ${className}`}>
+    <span
+      className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${className}`}
+      style={{
+        backgroundColor: hexToRgba(resolvedColor, 0.1),
+        color: resolvedColor,
+        borderColor: hexToRgba(resolvedColor, 0.2),
+      }}
+    >
       {children}
     </span>
   )

@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { SingerCard } from '../components/SingerCard'
-import { showsData, teamData } from '../data'
+import { useShows } from '../hooks/useShows'
+import { useTeamMembers } from '../hooks/useTeamMembers'
+import { formatTime12h } from '../lib/format'
 
 const formatDateShort = (dateStr: string) => {
   const [year, month, day] = dateStr.split('-').map(Number)
@@ -13,7 +15,9 @@ const formatDateShort = (dateStr: string) => {
 
 
 export const Home: React.FC = () => {
-  const featuredShow = showsData[0]
+  const { data: shows } = useShows()
+  const { data: members } = useTeamMembers()
+  const featuredShow = shows[0]
 
   return (
     <div className="bg-surface overflow-x-hidden">
@@ -41,8 +45,16 @@ export const Home: React.FC = () => {
               <div className="glass-card p-6 md:p-8 flex flex-row items-center gap-6 group hover:border-primary/40 transition-colors">
                 <div className="flex-1">
                   <p className="label-uppercase text-secondary mb-1">Próxima Presentación</p>
-                  <h3 className="font-headline text-2xl font-bold text-on-surface">{featuredShow.title}</h3>
-                  <p className="text-on-surface-variant text-sm mt-1">{featuredShow.venue} • {formatDateShort(featuredShow.date)}</p>
+                  {featuredShow ? (
+                    <>
+                      <h3 className="font-headline text-2xl font-bold text-on-surface">{featuredShow.title}</h3>
+                      <p className="text-on-surface-variant text-sm mt-1">
+                        {featuredShow.venue} • {formatDateShort(featuredShow.date)} • {formatTime12h(featuredShow.eventTime ?? '20:00')}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-on-surface-variant text-sm">Próximamente…</p>
+                  )}
                 </div>
                 <Link to="/shows" aria-label="Ver todos los recitales">
                   <Button variant="primary" className="group-hover:scale-105 transition-transform">
@@ -76,14 +88,14 @@ export const Home: React.FC = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {teamData.slice(0, 4).map((member, index) => (
+            {members.slice(0, 4).map((member, index) => (
               <SingerCard
                 key={member.id}
-                id={member.id}
+                slug={member.slug}
                 name={member.name}
                 role={member.role}
                 image={member.image}
-                color={member.color ?? 'primary'}
+                color={member.color ?? '#ba9eff'}
                 className={index % 2 === 1 ? 'md:mt-16' : ''}
               />
             ))}

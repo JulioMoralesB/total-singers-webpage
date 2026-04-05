@@ -2,8 +2,13 @@ export interface Show {
   id: string;
   slug: string;
   title: string;
+  description?: string;
   date: string;
+  eventTime?: string;
+  doorsOpenTime?: string;
+  estimatedDurationMinutes?: number;
   location: string;
+  locationUrl?: string;
   venue: string;
   image: string;
   setlist?: Track[];
@@ -15,7 +20,12 @@ export interface Track {
   title: string;
   artist: string;
   duration: string;
-  soloists?: string[];
+  soloists?: TrackSoloist[];
+}
+
+export interface TrackSoloist {
+  name: string;
+  slug?: string;
 }
 
 export interface SocialLinks {
@@ -27,11 +37,12 @@ export interface SocialLinks {
 
 export interface TeamMember {
   id: string;
+  slug: string;
   name: string;
   role: string;
   image: string;
   instrument?: string;
   bio?: string | null;
-  color?: 'primary' | 'secondary' | 'tertiary';
+  color?: string;
   socialLinks?: SocialLinks;
 }
