@@ -220,7 +220,7 @@ export const ShowDetail: React.FC = () => {
                           {String(track.number).padStart(2, '0')}
                         </span>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-headline text-balance font-bold text-on-surface group-hover:text-primary transition-colors truncate">
+                          <h3 className="font-headline text-base font-bold text-on-surface group-hover:text-primary transition-colors">
                             {track.title}
                           </h3>
                           <p className="text-on-surface-variant text-sm">
