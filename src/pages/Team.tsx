@@ -55,7 +55,7 @@ export const Team: React.FC = () => {
               <h3 className="font-headline text-2xl md:text-4xl font-black italic text-primary leading-tight mb-6">
                 "Sincronización sin sacrificar la identidad."
               </h3>
-              <p className="text-on-surface-variant text-md md:text-lg font-body">
+              <p className="text-on-surface-variant text-base md:text-lg font-body">
                 En Total Singers, creemos que la verdadera magia ocurre cuando las voces individuales convergen en un sonido cohesivo. Cada miembro aporta su técnica, su pasión y su interpretación única — juntos creamos algo que es mayor que la suma de sus partes.
               </p>
             </div>
