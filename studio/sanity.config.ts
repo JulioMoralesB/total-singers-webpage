@@ -34,7 +34,7 @@ export default defineConfig([
 
         const productionClient = getProductionClient(context.getClient({apiVersion: '2026-04-04'}))
 
-        return [createPromoteToProductionAction(productionClient), ...prev]
+        return [...prev, createPromoteToProductionAction(productionClient)]
       },
     },
   },
