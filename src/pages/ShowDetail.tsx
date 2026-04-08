@@ -187,7 +187,7 @@ export const ShowDetail: React.FC = () => {
           <div className="max-w-4xl mx-auto px-6 md:px-8">
             <div className="flex items-center justify-between mb-12">
               <h2 className="heading-secondary text-on-surface">Programa</h2>
-              <div className="flex gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <Badge color="secondary">{show.setlist.length} canciones</Badge>
                 <Badge color="tertiary">
                   {(() => {
@@ -220,7 +220,7 @@ export const ShowDetail: React.FC = () => {
                           {String(track.number).padStart(2, '0')}
                         </span>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-headline text-base font-bold text-on-surface group-hover:text-primary transition-colors truncate">
+                          <h3 className="font-headline text-base font-bold text-on-surface group-hover:text-primary transition-colors">
                             {track.title}
                           </h3>
                           <p className="text-on-surface-variant text-sm">

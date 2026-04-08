@@ -52,10 +52,10 @@ export const Team: React.FC = () => {
           <h2 className="heading-secondary text-on-surface mb-16">Nuestra Filosofía</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="md:col-span-2 bg-gradient-to-br from-surface-container-highest to-surface-container-low p-12 rounded-lg border border-outline-variant/10">
-              <h3 className="font-headline text-4xl font-black italic text-primary leading-tight mb-6">
+              <h3 className="font-headline text-2xl md:text-4xl font-black italic text-primary leading-tight mb-6">
                 "Sincronización sin sacrificar la identidad."
               </h3>
-              <p className="text-on-surface-variant text-lg font-body">
+              <p className="text-on-surface-variant text-base md:text-lg font-body">
                 En Total Singers, creemos que la verdadera magia ocurre cuando las voces individuales convergen en un sonido cohesivo. Cada miembro aporta su técnica, su pasión y su interpretación única — juntos creamos algo que es mayor que la suma de sus partes.
               </p>
             </div>
