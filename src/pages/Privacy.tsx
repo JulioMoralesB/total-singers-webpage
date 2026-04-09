@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export const Privacy: React.FC = () => {
   return (
     <div className="bg-surface min-h-screen">
-      <section className="py-32 pt-40">
+      <section className="py-8">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <Link
             to="/"
